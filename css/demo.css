@@ -795,6 +795,9 @@ a:focus {
 	cursor: pointer;
 	border: 3px solid #1c2123;
 	background: #7bd4ff;
+}
+
+.vision--loaded .btn {
 	pointer-events: auto;
 }
 
