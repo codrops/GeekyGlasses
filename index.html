@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Geeky Glasses | Codrops</title>
+	<meta name="description" content="A geeky try-on experiment that shows a first person view through the colored lenses of sunglasses, mimicking the movement of putting them on and off." />
+	<meta name="keywords" content="css animation, sunglasses, try-on, experiment, flexbox, effect, overlay" />
+	<meta name="author" content="Codrops" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<script>document.documentElement.className = 'js';</script>
+</head>
+
+<body>
+	<svg class="hidden">
+		<symbol id="icon-arrow" viewBox="0 0 24 24">
+			<title>arrow</title>
+			<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 " />
+		</symbol>
+		<symbol id="icon-drop" viewBox="0 0 24 24">
+			<title>drop</title>
+			<path d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z" />
+			<path d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z" />
+		</symbol>
+		<!-- Glasses icon made by Freepik fromwww.flaticon.com http://www.flaticon.com/free-icon/obscure-glasses_18137, licensed by CC 3.0 BY http://creativecommons.org/licenses/by/3.0/ -->
+		<symbol id="icon-glasses" viewBox="0 0 24 24">
+			<title>glasses</title>
+			<path d="M23.8,13.1L23.8,13.1l-6.2-9.2l-0.1,0c0,0-2.5-0.9-4.1,1.6l0.6,0.4c1.1-1.7,2.7-1.4,3.1-1.3l5.6,8.2c-0.8-0.2-2-0.4-3.6-0.4c-1.6,0-3.2,0.2-4.9,0.6l-0.3,0.1l0,0.4c-1.5-0.6-3.1-0.2-3.9,0.1l0-0.4l-0.3-0.1c-1.6-0.4-3.3-0.6-4.9-0.6c-1.5,0-2.7,0.2-3.5,0.3l5.5-8.2C7.4,4.3,8.9,4,10,5.7l0.6-0.4C9.1,2.8,6.6,3.8,6.6,3.8l-0.1,0l-6.2,9.1l-0.1,0l0,3.2c0,0.1-0.1,1.6,1,2.8c0.9,0.9,2.2,1.4,4,1.4c1.9,0,3.3-0.5,4.1-1.4c1-1.1,0.8-2.4,0.8-2.4l0-2.4c0.6-0.2,2.4-0.8,3.9,0l0,2.4c0,0.1-0.1,1.4,0.8,2.5c0.8,0.9,2.2,1.4,4.1,1.4c1.8,0,3.2-0.5,4-1.4c1.1-1.2,1-2.7,1-2.7L23.8,13.1z"/>
+		</symbol>
+		<symbol id="icon-grid" viewBox="0 0 24 24">
+			<title>grid</title>
+			<path d="M21.4,9.5h-3.7c-0.3,0-0.6,0.3-0.6,0.6v3.7c0,0.3,0.3,0.6,0.6,0.6h3.7c0.3,0,0.6-0.3,0.6-0.6v-3.7C22,9.8,21.7,9.5,21.4,9.5z M21.4,2h-3.7C17.3,2,17,2.3,17,2.7v3.7C17,6.7,17.3,7,17.7,7h3.7C21.7,7,22,6.7,22,6.4V2.7C22,2.3,21.7,2,21.4,2z M6.4,2H2.7C2.3,2,2,2.3,2,2.7v3.7C2,6.7,2.3,7,2.7,7h3.7C6.7,7,7,6.7,7,6.4V2.7C7,2.3,6.7,2,6.4,2z M6.4,9.5H2.7C2.3,9.5,2,9.8,2,10.2v3.7c0,0.3,0.3,0.6,0.6,0.6h3.7c0.3,0,0.6-0.3,0.6-0.6v-3.7C7,9.8,6.7,9.5,6.4,9.5z M21.4,17h-3.7c-0.3,0-0.6,0.3-0.6,0.6v3.7c0,0.3,0.3,0.6,0.6,0.6h3.7c0.3,0,0.6-0.3,0.6-0.6v-3.7C22,17.3,21.7,17,21.4,17z M6.4,17H2.7C2.3,17,2,17.3,2,17.7v3.7C2,21.7,2.3,22,2.7,22h3.7C6.7,22,7,21.7,7,21.4v-3.7C7,17.3,6.7,17,6.4,17z M13.9,9.5h-3.7c-0.3,0-0.6,0.3-0.6,0.6v3.7c0,0.3,0.3,0.6,0.6,0.6h3.7c0.3,0,0.6-0.3,0.6-0.6v-3.7C14.5,9.8,14.2,9.5,13.9,9.5z M13.9,2h-3.7C9.8,2,9.5,2.3,9.5,2.7v3.7C9.5,6.7,9.8,7,10.2,7h3.7c0.3,0,0.6-0.3,0.6-0.6V2.7C14.5,2.3,14.2,2,13.9,2z M13.9,17h-3.7c-0.3,0-0.6,0.3-0.6,0.6v3.7c0,0.3,0.3,0.6,0.6,0.6h3.7c0.3,0,0.6-0.3,0.6-0.6v-3.7C14.5,17.3,14.2,17,13.9,17z"/>
+		</symbol>
+		<symbol id="icon-prev" viewBox="0 0 100 50">
+			<title>prev</title>
+			<polygon points="5.4,25 18.7,38.2 22.6,34.2 16.2,27.8 94.6,27.8 94.6,22.2 16.2,22.2 22.6,15.8 18.7,11.8"></polygon>
+		</symbol>
+		<symbol id="icon-next" viewBox="0 0 100 50">
+			<title>next</title>
+			<polygon points="81.3,11.8 77.4,15.8 83.8,22.2 5.4,22.2 5.4,27.8 83.8,27.8 77.4,34.2 81.3,38.2 94.6,25 "></polygon>
+		</symbol>
+		<symbol id="glasses-1" viewBox="0 0 400.3 166.1">
+			<title>glasses 1</title>
+			<path fill="rgba(111,79,117,0.4)" d="M304.8,21.7c-36.6,1.2-87.7,14.4-74.1,62.2c10,35.2,35.5,70.3,74.1,70.3c43.5,0,64.8-28.5,72.1-64.3C384.2,54.3,393.9,18.8,304.8,21.7z M96,20.8C6.9,17.9,16.6,53.3,23.9,89c7.3,35.9,28.7,64.3,72.1,64.3c38.6,0,64.1-35.1,74.1-70.3C183.7,35.2,132.6,22,96,20.8z"/>
+			<path fill="#31363D" d="M305.7,2.1c-30.2,3.7-60.4,8.8-78.3,22.8c-23.1,15.1-54.4,0-54.4,0c-17.9-14-48.1-19.1-78.3-22.8C-14.9-11.2-3.6,42.3,5.4,86.5c9.1,44.4,35.5,79.6,89.2,79.6c47.8,0,79.3-43.5,91.7-87c1.2-4.3,2-8.3,2.5-12.1c8.7-2.4,16.6-1.6,22.6,0c0.5,3.8,1.3,7.8,2.5,12.1c12.4,43.6,43.9,87,91.7,87c53.8,0,80.2-35.2,89.2-79.6C404,42.3,415.2-11.2,305.7,2.1z M170.1,83c-10,35.2-35.5,70.3-74.1,70.3c-43.5,0-64.8-28.5-72.1-64.3C16.6,53.3,6.9,17.9,96,20.8C132.6,22,183.7,35.2,170.1,83z M376.9,90c-7.3,35.9-28.7,64.3-72.1,64.3c-38.6,0-64-35.1-74.1-70.3c-13.6-47.8,37.5-61,74.1-62.2C393.9,18.8,384.2,54.3,376.9,90z"/>
+		</symbol>
+		<symbol id="glasses-2" viewBox="0 0 373 159">
+			<title>glasses 2</title>
+			<path fill="#383532" d="M14.6,49.7c0,0-11.3-2-12,0.7s-4,12.3-2,15c2,2.7,6.3,3.7,8,3 M213.2,57.1c0,0-11.7-8.4-26.7-8.4S160,57,160,57l3.7,34.7c0,0,7.3-4.3,10-12s5.4-12.3,12.3-12.3c6.3,0,8.3,6,10.3,9.7s8.2,15.3,13.2,15.3L213.2,57.1z M358.3,49.7c0,0,11.3-2,12,0.7s4,12.3,2,15c-2,2.7-6.3,3.7-8,3"/>
+			<path fill="#494542" d="M85.5,0C41.6,0,6,35.6,6,79.5S41.6,159,85.5,159S165,123.4,165,79.5S129.4,0,85.5,0z M85.5,148.8c-38.3,0-69.3-31-69.3-69.3s31-69.3,69.3-69.3s69.3,31,69.3,69.3S123.7,148.8,85.5,148.8z M208,79.5c0,43.9,35.6,79.5,79.5,79.5S367,123.4,367,79.5S331.4,0,287.5,0S208,35.6,208,79.5z M218.2,79.5c0-38.3,31-69.3,69.3-69.3s69.3,31,69.3,69.3s-31,69.3-69.3,69.3S218.2,117.8,218.2,79.5z"/>
+			<path fill="rgba(236,118,156,0.3)" d="M85.5,10.2c38.3,0,69.3,31,69.3,69.3s-31,69.3-69.3,69.3s-69.3-31-69.3-69.3S47.3,10.2,85.5,10.2z M287.5,10.2c38.3,0,69.3,31,69.3,69.3s-31,69.3-69.3,69.3s-69.3-31-69.3-69.3S249.3,10.2,287.5,10.2z"/>
+		</symbol>
+		<symbol id="glasses-3" viewBox="0 0 425.4 155.5">
+			<title>glasses 3</title>
+			<path fill="rgba(165,129,100,0.4)" d="M119.9,26.2c-36-5.5-90.6-10.7-86.5,24.5c7.5,64.5,48.8,96.5,84.2,96.5c39.3,0,71.3-41.5,71.3-72C188.9,50.2,155,31.6,119.9,26.2z M305.5,26.2c-35.1,5.4-69,24-69,49c0,30.5,32,72,71.2,72c35.5,0,76.8-32,84.2-96.5C396.1,15.5,341.5,20.7,305.5,26.2z"/>
+			<path fill="#533A35" d="M416.5,0.7c-16-1.5-50.5,0-50.5,0l0,0C351,1,330.7,4,303.5,10c-25.2,5.5-49.5,17.7-64,33.2c-20.3,3-39.5,1.6-54.3-0.7c-14.6-15.1-38.5-27-63.3-32.5C94.7,4,74.4,1,59.4,0.7l0,0c0,0-34.5-1.5-50.5,0S3.4,11.2,3.4,11.2s-0.5,20,6,26.5s16.2,32.1,16.2,32.1l0,0c15.2,57.2,56.2,85.7,92,85.7c45,0,81.8-47.6,81.8-82.6c0-0.2,0-0.5,0-0.7c12.2-2.3,21.8-0.9,26.7,0.2c0,0.2,0,0.3,0,0.5c0,35,36.7,82.6,81.8,82.6c35.8,0,76.8-28.4,92-85.7l0,0c0,0,9.7-25.6,16.2-32.1s6-26.5,6-26.5S432.5,2.2,416.5,0.7z M117.6,147.2c-35.5,0-76.8-32-84.2-96.5c-4.1-35.2,50.5-30,86.5-24.5c35.1,5.4,69,24,69,49C188.9,105.7,156.9,147.2,117.6,147.2z M392,50.7c-7.5,64.5-48.8,96.5-84.2,96.5c-39.2,0-71.2-41.5-71.2-72c0-25,33.9-43.6,69-49C341.5,20.7,396.1,15.5,392,50.7z"/>
+		</symbol>
+		<symbol id="glasses-4" viewBox="0 0 416.9 166.5">
+			<title>glasses 4</title>
+			<path fill="rgba(250,230,65,0.3)" d="M98.5,12.8c38.7,0,70,31.3,70,70s-31.3,70-70,70s-70-31.3-70-70S59.9,12.8,98.5,12.8z M318.3,12.8c38.7,0,70,31.3,70,70s-31.3,70-70,70s-70-31.3-70-70S279.7,12.8,318.3,12.8z"/>
+			<path fill="#000" d="M416,14.9C373.6,1,337.4-0.2,321.1,0.1c-1,0-1.9-0.1-2.9-0.1c-36.7,0-67.8,23.8-78.9,56.8c-3-2.8-8.1-7.2-16.7-13.8c-11.5-8.9-24.3-3.9-29.5,0l-16,12.6C165.7,23.2,134.8,0,98.6,0c-1,0-1.9,0-2.9,0.1C79.5-0.2,43.3,1,0.8,14.9c-0.5,3.9-6,52.9,19.2,95.7c11.3,32.5,42.3,55.9,78.6,55.9c45.9,0,83.2-37.3,83.2-83.2c0-6.7-0.8-13.2-2.3-19.4L198,49.4c0.8-0.6,10.5-7.2,19.8,0c15.5,11.9,18.8,15.9,19.1,16.4c-1.2,5.7-1.9,11.5-1.9,17.5c0,45.9,37.3,83.2,83.2,83.2c36.3,0,67.3-23.4,78.6-55.9C422,67.7,416.5,18.7,416,14.9z M98.6,148.5c-36,0-65.2-29.3-65.2-65.2S62.6,18,98.6,18s65.2,29.3,65.2,65.2S134.6,148.5,98.6,148.5z M236.8,65.6L236.8,65.6C236.9,65.6,236.9,65.7,236.8,65.6C236.8,65.7,236.8,65.6,236.8,65.6z M318.2,148.5c-36,0-65.2-29.3-65.2-65.2S282.3,18,318.2,18s65.2,29.3,65.2,65.2S354.2,148.5,318.2,148.5z"/>
+		</symbol>
+		<symbol id="glasses-5" viewBox="0 0 394.2 142.9">
+			<title>glasses 5</title>
+			<path fill="#231D13" d="M161,46.1c2.4,11.4,1.4,27.1-3.3,40.8c-7.3,21-24,36.9-36.3,40.8c-12,3.8-28.9,4.9-43.6,2.1c-14-2.7-25.9-9-33.5-16.1c-7.3-6.8-16-26-17.1-45.4c-0.8-13.1,1.5-26.3,5.9-35.9L7.8,33.7c0,0,14.1,69,26.6,86.7c12.5,17.7,42.2,21.2,53.6,22.3c11.4,1.1,39.7-3.7,59.1-17.7c19.4-14,33.1-60.5,33.1-60.5c3.8-9.5,11.3-10.2,16.9-10.2c5.4,0,13.2,0.7,17,10.2c0,0,13.7,46.5,33.1,60.5s47.7,18.8,59.1,17.7c11.4-1.1,41.1-4.6,53.6-22.3c12.5-17.7,26.5-86.7,26.5-86.7l-25.3-1.3c4.4,9.6,6.7,22.8,5.9,35.9c-1.1,19.4-9.8,38.6-17.1,45.4c-7.6,7.1-19.5,13.4-33.5,16.1c-14.7,2.8-31.6,1.7-43.6-2.1c-12.3-3.9-29-19.8-36.3-40.8c-4.7-13.7-5.7-29.4-3.3-40.8c0,0,1-4.7-36.1-4.7C159.6,41.4,161,46.1,161,46.1z"/>
+			<path fill="#1E1910" d="M232.3,53.3c0.6-7.6,2.4-14.3,5.5-18.5c15.2-20.9,89.9-25.1,111.6-16c5.8,2.5,10.6,9.4,13.7,18.3c7.7,0.5,29.8,1.8,30.5,0.4c0.8-1.7,1.1-23.4-0.3-24.5c-0.7-0.6-17.8-6.4-37.3-9.7c-18.5-3.1-39.2-3.7-50.3-3.1c-22.8,1.2-55.4,5.2-64.2,10.3S225.9,25,221,25.9c-4.5,0.8-20.9,1.8-23.8,2c-2.9-0.2-19.4-1.2-23.9-2c-4.9-0.9-11.7-10.3-20.5-15.4C144,5.4,111.4,1.4,88.6,0.3c-11.1-0.6-31.8,0-50.3,3.1C18.8,6.7,1.7,12.5,1,13.1c-1.4,1.1-1.1,22.8-0.3,24.5c0.7,1.4,22.8,0.1,30.5-0.4c3.2-9,7.9-15.9,13.7-18.4c21.7-9.1,96.4-4.9,111.6,16c3.1,4.2,4.9,10.9,5.5,18.5c0,0,18-8.2,35.1-8.2C215.5,45.1,232.3,53.3,232.3,53.3z"/>
+			<path fill="rgba(159,150,138,0.6)" d="M156.5,34.8C141.4,14,66.6,9.7,44.9,18.8C33.4,23.7,26,46.1,27.3,68.2c1.1,19.4,9.8,38.6,17.1,45.4c7.6,7.1,19.5,13.4,33.5,16.1c14.7,2.8,31.6,1.7,43.6-2.1c12.3-3.9,29-19.8,36.3-40.8C164.3,67.7,163.7,44.7,156.5,34.8z M237.8,34.8c15.1-20.8,89.9-25.1,111.6-16c11.5,4.9,19,27.3,17.7,49.4c-1.1,19.4-9.8,38.6-17.1,45.4c-7.6,7.1-19.5,13.4-33.5,16.1c-14.7,2.8-31.6,1.7-43.6-2.1c-12.3-3.9-29-19.8-36.3-40.8C230,67.7,230.6,44.7,237.8,34.8z"/>
+		</symbol>
+		<symbol id="glasses-6" viewBox="0 0 391 152.4">
+			<title>glasses 6</title>
+			<linearGradient id="gradient-glasses-6" x1="0" x2="0" y1="0" y2="1">
+				<stop offset="0" style="stop-color:rgba(50,65,46,1)"/>
+				<stop offset="1" style="stop-color:rgba(139,153,123,0.35)"/>
+			</linearGradient>
+			<path fill="#887A71" d="M385.3,57.8c0,0,5.6,4.3,5.6,8.3s0.6,17.3-3.7,17.3c-4.3,0-5.6,1.5-5.6,1.5l1.5-24.4 M5.6,57.8c0,0-5.6,4.3-5.6,8.3s-0.6,17.3,3.7,17.3S9.3,85,9.3,85L7.8,60.6"/>
+			<path fill="url(#gradient-glasses-6)" d="M182.3,22.1C177.2,8.2,148,5.4,148,5.4s-70-4.6-96.4,5.1S11.8,38.8,11.3,70.3s38.9,74.6,68.6,77.4s61.6-20.4,82.5-53.8S187.4,36,182.3,22.1z M208.1,22.1c5.1-13.9,34.3-16.7,34.3-16.7s70-4.6,96.4,5.1s39.9,28.3,40.3,59.8c0.5,31.5-38.9,74.6-68.6,77.4s-61.6-20.4-82.5-53.8S203,36,208.1,22.1z"/>
+			<path fill="#2E2926" d="M378.7,37.6c-9.4-18.7-32-30.1-49.1-32.4C295.8,0.6,261.8,0,261.8,0s-29.3,0.4-41,2.4c-15.3,0-33.7,0.1-49.7,0.3C160.7,0.5,128.6,0,128.6,0s-34,0.6-67.7,5.3C43.8,7.6,21.1,19,11.8,37.7c-9,18-5.2,43.1-2.3,52.7c5.9,19.5,43.4,62.6,75.9,62c32.4-0.6,63.3-25.6,79.4-51c9.7-15.3,17.2-31,20.6-43c3.5-3.5,6.4-4.3,11.1-4.3c3.6,0,6.8,1.9,9.5,4.3c3.2,12.6,9.4,26.6,19.7,42.9c16.1,25.3,47,50.4,79.4,51c32.4,0.6,70-42.5,75.9-62C383.9,80.7,387.7,55.6,378.7,37.6z M174,3.7c-0.2-0.2-0.6-0.3-1-0.5C173.5,3.4,173.8,3.5,174,3.7z M162.4,93.9c-20.9,33.4-52.8,56.5-82.5,53.8c-29.7-2.7-69.1-45.9-68.6-77.4s13.9-50.1,40.3-59.8C78,0.8,148,5.4,148,5.4s29.2,2.8,34.3,16.7C187.4,36,183.3,60.6,162.4,93.9z M199.9,44.9c0,2.5-2,4.5-4.5,4.5s-4.5-2-4.5-4.5V11.5c0-2.5,2-4.5,4.5-4.5s4.5,2,4.5,4.5V44.9z M310.5,147.7c-29.7,2.8-61.6-20.4-82.5-53.8c-20.9-33.4-25-57.9-19.9-71.8c5.1-13.9,34.3-16.7,34.3-16.7s70-4.6,96.4,5.1c26.4,9.7,39.9,28.3,40.3,59.8C379.6,101.8,340.2,144.9,310.5,147.7z"/>
+		</symbol>
+		<symbol id="icon-mountains" viewBox="0 0 512 512">
+			<title>mountains</title>
+			<path d="M344.328,129.959l-53.49,101.51L202.511,63.843L0,448.157h370.528h34.491H512L344.328,129.959z M344.328,195.414l39.763,75.46c-0.573,0.354-1.118,0.699-1.629,1.023c-3.132,1.992-3.974,2.527-7.255,2.527c-3.281,0-4.123-0.535-7.255-2.527c-4.566-2.903-11.466-7.29-23.627-7.29c-12.159,0-19.059,4.387-23.625,7.29c-3.123,1.985-3.971,2.523-7.227,2.526l-5.389-10.227L344.328,195.414z M202.509,129.299l54.461,103.352c-1.859,1.017-3.502,2.057-4.993,3.004c-4.026,2.559-5.863,3.728-11.034,3.728c-5.17,0-7.007-1.168-11.033-3.728c-5.637-3.583-13.356-8.491-27.405-8.491s-21.766,4.908-27.402,8.491c-4.025,2.559-5.863,3.727-11.031,3.727c-5.168,0-7.006-1.168-11.031-3.727c-1.49-0.947-3.132-1.987-4.992-3.004L202.509,129.299z M50.572,417.643v-0.001l83.248-157.985c0.865,0.488,1.78,1.068,2.85,1.749c5.636,3.583,13.355,8.491,27.402,8.491c14.049,0,21.766-4.908,27.402-8.491c4.025-2.559,5.863-3.727,11.031-3.727c5.17,0,7.008,1.168,11.034,3.728c5.637,3.583,13.356,8.491,27.404,8.491c14.05,0,21.768-4.908,27.405-8.491c1.071-0.681,1.987-1.26,2.852-1.748l83.248,157.985H50.572z M388.941,417.641L388.941,417.641l-60.752-115.293c3.774-1.455,6.618-3.26,8.884-4.701c3.132-1.992,3.973-2.526,7.253-2.526c3.281,0,4.124,0.535,7.255,2.527c4.566,2.903,11.466,7.29,23.627,7.29c11.751,0,18.584-4.093,23.151-6.989l63.07,119.692H388.941z"/>
+		</symbol>
+		<symbol id="icon-beach" viewBox="0 0 512 512">
+			<title>beach</title>
+			<path d="M413.974,104.448C368.171,58.646,307.274,33.421,242.5,33.421S116.829,58.646,71.026,104.448C25.225,150.25,0,211.147,0,275.921v7.818l144.06,100.657v67.182H340.94v-67.182L485,283.739v-7.818C485,211.147,459.775,150.25,413.974,104.448z M257.5,361.579V63.955c47.741,3.345,91.185,22.523,125.094,52.312L274.439,361.579H257.5z M210.561,361.579L102.406,116.267C136.315,86.478,179.759,67.3,227.5,63.955v297.624H210.561z M30.139,268.2c1.755-48.94,20.15-93.705,49.67-128.822l97.965,222.2h-13.993L30.139,268.2z M174.06,421.579v-30H310.94v30H174.06z M321.219,361.579h-13.993l97.965-222.2c29.521,35.117,47.916,79.882,49.67,128.822L321.219,361.579z"/>
+		</symbol>
+		<symbol id="icon-city" viewBox="0 0 362.802 362.802">
+			<title>city</title>
+			<path d="M79.363,249.427H56.688v22.675h22.675V249.427z M260.764,158.726V68.025h-68.025V0h-22.675v68.025h-68.025v45.35H11.338v249.427h340.127V158.726H260.764z M102.038,340.127H79.363v-45.35H56.688v45.35H34.013V136.051h68.025V340.127z M238.089,340.127h-34.013v-45.35h-45.35v45.35h-34.013V90.701h113.376V340.127z M328.79,340.127h-22.675v-45.35h-22.675v45.35h-22.675V181.401h68.025V340.127z M79.363,158.726H56.688v22.675h22.675V158.726z M79.363,204.076H56.688v22.675h22.675V204.076z M204.076,113.376h-45.35v22.675h45.35V113.376z M204.076,158.726h-45.35v22.675h45.35V158.726z M306.114,249.427h-22.675v22.675h22.675V249.427z M306.114,204.076h-22.675v22.675h22.675V204.076z M204.076,249.427h-45.35v22.675h45.35V249.427z M204.076,204.076h-45.35v22.675h45.35V204.076z"/>
+		</symbol>
+	</svg>
+	<main>
+		<header class="codrops-header">
+			<div class="codrops-links">
+				<a class="codrops-icon codrops-icon--prev" href="https://tympanus.net/Development/SearchUIEffects/" title="Previous Demo">
+					<svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg>
+				</a>
+				<a class="codrops-icon codrops-icon--drop" href="https://tympanus.net/codrops/?p=30199" title="Back to the article">
+					<svg class="icon icon--drop"><use xlink:href="#icon-drop"></use></svg>
+				</a>
+			</div>
+			<h1 class="codrops-header__title">Ace Eyewear</h1>
+			<a class="github" href="https://github.com/codrops/">/Github</a>
+			<div class="intro">
+				<img class="intro__img" src="img/main.png" alt="main"/>
+				<p class="intro__text">Stop being a cheese weasel and become pinkpolo'd with Ace eyewear!</p>
+			</div>
+		</header>
+		<section class="grid">
+			<!-- to be realistic, we use PNGs in the grid (like they'd probably be used in a real site), and SVG shapes in the full view -->
+			<div class="grid__item">
+				<a class="grid__link" href="#vison-item-1">
+					<img class="grid__img" src="img/1.png" alt="Glasses 1" />
+					<h3 class="grid__item-name">Heather</h3>
+					<p class="grid__item-desc">Synth plaid fashion axe gastropub coloring book.</p>
+				</a>
+			</div>
+			<div class="grid__item">
+				<a class="grid__link grid__link--offset grid__link--alt" href="#vison-item-2">
+					<img class="grid__img" src="img/2.png" alt="Glasses 2" />
+					<h3 class="grid__item-name">Johnny</h3>
+					<p class="grid__item-desc">Cray brooklyn sartorial, meggings retro tofu belly photo booth.</p>
+				</a>
+			</div>
+			<div class="grid__item grid__item--center">
+				<a class="grid__link grid__link--offset-neg" href="#vison-item-3">
+					<img class="grid__img" src="img/3.png" alt="Glasses 3" />
+					<h3 class="grid__item-name">Cloe</h3>
+					<p class="grid__item-desc">Kinfolk sustainable affogato, tousled kombucha artisan master cleanse echo park.</p>
+				</a>
+			</div>
+			<div class="grid__item grid__item--center">
+				<a class="grid__link grid__link--offset" href="#vison-item-4">
+					<img class="grid__img" src="img/4.png" alt="Glasses 4" />
+					<h3 class="grid__item-name">Britta</h3>
+					<p class="grid__item-desc">Fam occupy mumblecore, vinyl hashtag fanny pack seitan ethical chambray woke.</p>
+				</a>
+			</div>
+			<div class="grid__item">
+				<a class="grid__link grid__link--alt" href="#vison-item-5">
+					<img class="grid__img" src="img/5.png" alt="Glasses 5" />
+					<h3 class="grid__item-name">Frank</h3>
+					<p class="grid__item-desc">Mumblecore banjo distillery, cliche brooklyn keytar meh.</p>
+				</a>
+			</div>
+			<div class="grid__item">
+				<a class="grid__link grid__link--offset grid__link--alt" href="#vison-item-6">
+					<img class="grid__img" src="img/6.png" alt="Glasses 6" />
+					<h3 class="grid__item-name">Bernd</h3>
+					<p class="grid__item-desc">Kitsch williamsburg selfies, slow-carb polaroid forage scenester pickled.</p>
+				</a>
+			</div>
+			<div class="grid__item">
+				<div class="grid__fill">
+					<p>Kinfolk sustainable affogato, cray brooklyn sartorial! Meggings retro tofu belly photo booth. pickled banjo distillery, <strong>cliche brooklyn keytar meh</strong>.</p>
+				</div>
+			</div>
+		</section>
+		<section class="vision">
+			<!-- backgrounds -->
+			<div class="vision__background">
+				<div class="vision__background-img vision__background-img--beach vision__background-img--current"></div>
+				<div class="vision__background-img vision__background-img--mountains"></div>
+				<div class="vision__background-img vision__background-img--city"></div>
+			</div>
+			<div class="vision__flash"></div>
+			<!-- deco elements and loader -->
+			<div class="vision__deco">
+				<div class="vision__swoosh"></div>
+				<svg class="vision__loader icon icon--glasses">
+					<use xlink:href="#icon-glasses"></use>
+				</svg>
+			</div>
+			<!-- items -->
+			<div class="vision__items">
+				<div id="vison-item-1" class="vision__item">
+					<div class="vision__overlay">
+						<div class="vision__overlay-bg vision__overlay-bg--1"></div>
+						<div class="vision__overlay-glasses"><svg class="vision__overlay-img"><use xlink:href="#glasses-1"></use></svg></div>
+					</div>
+				</div>
+				<div id="vison-item-2" class="vision__item">
+					<div class="vision__overlay">
+						<div class="vision__overlay-bg vision__overlay-bg--2"></div>
+						<div class="vision__overlay-glasses"><svg class="vision__overlay-img"><use xlink:href="#glasses-2"></use></svg></div>
+					</div>
+				</div>
+				<div id="vison-item-3" class="vision__item">
+					<div class="vision__overlay">
+						<div class="vision__overlay-bg vision__overlay-bg--3"></div>
+						<div class="vision__overlay-glasses"><svg class="vision__overlay-img"><use xlink:href="#glasses-3"></use></svg></div>
+					</div>
+				</div>
+				<div id="vison-item-4" class="vision__item">
+					<div class="vision__overlay">
+						<div class="vision__overlay-bg vision__overlay-bg--4"></div>
+						<div class="vision__overlay-glasses"><svg class="vision__overlay-img"><use xlink:href="#glasses-4"></use></svg></div>
+					</div>
+				</div>
+				<div id="vison-item-5" class="vision__item">
+					<div class="vision__overlay">
+						<div class="vision__overlay-bg vision__overlay-bg--5"></div>
+						<div class="vision__overlay-glasses"><svg class="vision__overlay-img"><use xlink:href="#glasses-5"></use></svg></div>
+					</div>
+				</div>
+				<div id="vison-item-6" class="vision__item">
+					<div class="vision__overlay">
+						<div class="vision__overlay-bg vision__overlay-bg--6"></div>
+						<div class="vision__overlay-glasses"><svg class="vision__overlay-img"><use xlink:href="#glasses-6"></use></svg></div>
+					</div>
+				</div>
+			</div>
+			<button class="btn btn--grid">
+				<svg class="icon icon--grid">
+					<use xlink:href="#icon-grid"></use>
+				</svg>
+			</button>
+			<nav class="nav">
+				<div class="nav__items">
+					<div class="nav__item">
+						<div class="nav__item-slide nav__item-slide--thumb"><img class="nav__item-img" src="img/1.png" alt="Glasses 1" /></div>
+						<div class="nav__item-slide nav__item-slide--title"><h3 class="nav__item-title">Heather</h3></div>
+					</div>
+					<div class="nav__item">
+						<div class="nav__item-slide nav__item-slide--thumb"><img class="nav__item-img" src="img/2.png" alt="Glasses 2" /></div>
+						<div class="nav__item-slide nav__item-slide--title"><h3 class="nav__item-title">Johnny</h3></div>
+					</div>
+					<div class="nav__item">
+						<div class="nav__item-slide nav__item-slide--thumb"><img class="nav__item-img" src="img/3.png" alt="Glasses 3" /></div>
+						<div class="nav__item-slide nav__item-slide--title"><h3 class="nav__item-title">Cloe</h3></div>
+					</div>
+					<div class="nav__item">
+						<div class="nav__item-slide nav__item-slide--thumb"><img class="nav__item-img" src="img/4.png" alt="Glasses 4" /></div>
+						<div class="nav__item-slide nav__item-slide--title"><h3 class="nav__item-title">Britta</h3></div>
+					</div>
+					<div class="nav__item">
+						<div class="nav__item-slide nav__item-slide--thumb"><img class="nav__item-img" src="img/5.png" alt="Glasses 5" /></div>
+						<div class="nav__item-slide nav__item-slide--title"><h3 class="nav__item-title">Frank</h3></div>
+					</div>
+					<div class="nav__item">
+						<div class="nav__item-slide nav__item-slide--thumb"><img class="nav__item-img" src="img/6.png" alt="Glasses 6" /></div>
+						<div class="nav__item-slide nav__item-slide--title"><h3 class="nav__item-title">Bernd</h3></div>
+					</div>
+				</div>
+				<div class="nav__arrows">
+					<button class="btn btn--nav btn--prev"><svg class="icon icon--arrow-up"><use xlink:href="#icon-arrow"></use></svg></button>
+					<button class="btn btn--nav btn--next"><svg class="icon icon--arrow-down"><use xlink:href="#icon-arrow"></use></svg></button>
+				</div>
+				<button class="btn btn--hide" aria-label="Hide overlay"></button>
+			</nav>
+			<div class="modes">
+				<button data-bg="beach" class="btn mode mode--current" aria-label="Mode 1 Image"><svg class="icon icon--beach"><use xlink:href="#icon-beach"></use></svg></button>
+				<button data-bg="mountains" class="btn mode" aria-label="Mode 2 Image"><svg class="icon icon--mountains"><use xlink:href="#icon-mountains"></use></svg></button>
+				<button data-bg="city" class="btn mode" aria-label="Mode 3 Image"><svg class="icon icon--city"><use xlink:href="#icon-city"></use></svg></button>
+			</div>
+			<div class="becool">
+				<svg class="icon icon--becool icon--becool-c1">
+					<use xlink:href="#icon-glasses"></use>
+				</svg>
+				<span class="becool__text">Be cool</span>
+				<svg class="icon icon--becool icon--becool-c2">
+					<use xlink:href="#icon-glasses"></use>
+				</svg>
+			</div>
+		</section>
+		<section class="footer">
+			<div class="columns">
+				<div class="column">
+					<p class="column__text">
+						1893 Douglas Blvd<br/> 
+						Roseville<br/> 
+						CA 95661, USA
+					</p>
+				</div>
+				<div class="column">
+					<p class="column__text">
+						+1 916-783-7775<br/> 
+						9:00AM - 9:30PM<br/> 
+						<a href="mailto:hello@aceeyewear.com">Electronic mail</a>
+					</p>
+				</div>
+				<div class="column">
+					<p class="column__text">
+						<a class="block-link" href="https://www.facebook.com/codrops/">The Book of Faces</a>
+						<a class="block-link" href="https://twitter.com/codrops">Chirp Chirp</a>
+					</p>
+				</div>
+			</div>
+		</section>
+	</main>
+	<script src="js/main.js"></script>
+</body>
+</html>
