@@ -209,11 +209,6 @@
 			glassesOn = true;
 		}
 
-		// Reset the vision__overlay--animCoolOut if present.
-		if( currentItemOverlay.classList.contains('vision__overlay--animCoolOut') ) {
-			currentItemOverlay.classList.remove('vision__overlay--animCoolOut');
-		}
-
 		// Update the current.
 		if( dir === 'next' ) {
 			current = current < itemsTotal - 1 ? current + 1 : 0; 
@@ -265,10 +260,6 @@
 	function toggleGlasses() {
 		// The current item's overlay.
 		var currentItemOverlay = items[current].querySelector('.vision__overlay');
-		// Reset the vision__overlay--animCoolOut if present.
-		if( currentItemOverlay.classList.contains('vision__overlay--animCoolOut') ) {
-			currentItemOverlay.classList.remove('vision__overlay--animCoolOut');
-		}
 		// Animate glasses frame in again.
 		currentItemOverlay.classList.toggle('vision__overlay--animIn');
 		// Hide/Fade out the overlay.
@@ -351,6 +342,7 @@
 					currentItemOverlay.classList.remove('vision__overlay--hide');
 					currentItemOverlay.classList.remove('vision__overlay--animCoolIn');
 					currentItemOverlay.classList.add('vision__overlay--animCoolOut');
+					onEndAnimation(currentItemOverlay, function() {currentItemOverlay.classList.remove('vision__overlay--animCoolOut');});
 				}
 			}
 
